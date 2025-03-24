@@ -14,6 +14,8 @@ Resource    ../Resources/PO/CustomerPage.robot
 Go to "Home" Page
     Home.Navigate To
     Home.Verify Page Loaded
+    Home.Verify Header Paragraph loaded
+    Home.Verify Header Sub Paragraph loaded
 
 Verify Home Page GRID Contents Loading
     Home.Navigate To
@@ -21,7 +23,6 @@ Verify Home Page GRID Contents Loading
     Home.Verify GRID Label_2 Loaded
     Home.Verify GRID Label_3 Loaded
     Home.Verify GRID Labels Paragraph Loading
-
 
 Login With Valid Credentials
     [Arguments]    ${Email}     ${Password}
@@ -59,3 +60,43 @@ Go To CustomerProfile Page
 Sign Out
     TopNav.Click "Sign Out" Link
     LoggedOut.Verify Page Loaded
+
+Navigating To HomePage From LoginPage By Clicking Logo TextLink
+    Home.Navigate To
+    Home.Verify Page Loaded
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Clicking Logo TextLink From TopNav
+    Home.Verify Page Loaded
+
+
+Navigating To HomePage From All Customers By Clicking Logo TextLink
+    [Arguments]    ${Email}     ${Password}
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    Customers.Verify Page Loaded
+    Customers.Clicking Logo TextLink From TopNav
+    Home.Verify Page Loaded
+
+Navigating To HomePage From CustomerPage By Clicking Logo TextLink
+    [Arguments]    ${Email}     ${Password}
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    Customers.Verify Page Loaded
+    Customers.Click Random User Profile View Icon
+    CustomerPage.Verify Page Loaded
+    CustomerPage.Clicking Logo TextLink From TopNav
+    Home.Verify Page Loaded
+
+Navigating To HomePage From AddCustomer Page By Clicking Logo TextLink
+    [Arguments]    ${Email}     ${Password}
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    Customers.Verify Page Loaded
+    Customers.Click Add Customer Link
+    AddCustomers.Verify Page Loaded
+    AddCustomers.Clicking Logo TextLink From TopNav
+    Home.Verify Page Loaded

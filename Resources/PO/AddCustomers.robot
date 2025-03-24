@@ -13,7 +13,7 @@ ${ADDCUSTOMER_STATE_DROPDOWN} =          id=StateOrRegion
 ${ADDCUSTOMER_GENDER_RADIO} =            gender
 ${ADDCUSTOMER_PROMO_CHECKBOX} =          name=promos-name
 ${ADDCUSTOMER_CANCEL_BUTTON} =           Cancel
-
+${CLICKING_LOGO_TEXT_LINK} =             Customer Service
 
 *** Keywords ***
 Verify Page Loaded
@@ -37,3 +37,6 @@ Click Submit Button
 
 Click Cancel Button
     click link                          ${ADDCUSTOMER_CANCEL_BUTTON}
+
+Clicking Logo TextLink From TopNav
+    click Link          ${CLICKING_LOGO_TEXT_LINK}

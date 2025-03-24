@@ -14,6 +14,7 @@ ${CUSTOMERS_CUSTOMER_SUCCESS_LABEL} =           Success! New customer added.
 ${USER_VIEW_ICON_LOCATOR} =                     //*[@id="customers"]/tbody/tr/td[5]/a[1]
 ${CUSTOMERS_PAGINATION_NEXT_BUTTON} =           Next
 ${CUSTOMERS_PAGINATION_NUMBERS_BUTTON} =        3
+${CLICKING_LOGO_TEXT_LINK} =                    Customer Service
 
 *** Keywords ***
 Verify Page Loaded
@@ -34,7 +35,10 @@ Click Random User Profile View Icon
     Click Element       ${random_icon}
 
 Click Pagination "NEXT" Button
-    click link         ${CUSTOMERS_PAGINATION_NEXT_BUTTON}
+    click link          ${CUSTOMERS_PAGINATION_NEXT_BUTTON}
 
 Click Number Button Of Pagination
-     click link        ${CUSTOMERS_PAGINATION_NUMBERS_BUTTON}
+    click link          ${CUSTOMERS_PAGINATION_NUMBERS_BUTTON}
+
+Clicking Logo TextLink From TopNav
+    click Link          ${CLICKING_LOGO_TEXT_LINK}

@@ -15,6 +15,7 @@ ${URL} =                       https://automationplayground.com/crm/
 ${VALID_LOGIN_EMAIL} =         admin@robotframework.com
 ${VALID_LOGIN_PASSWORD} =      _CoffeeCup852!
 
+
 *** Test Cases ***
 Home page should load
     [Documentation]             Testing: Home page should load
@@ -71,7 +72,7 @@ Go Through All Customers by using Clicking NEXT Button
 
 Go Through All Customers by using Number Button Pagination
     [Documentation]             Testing: Go Through All Customers by using Number Button Pagination
-    [Tags]                      1009 Smoke Contacts
+    [Tags]                      1010 Smoke Contacts
     CrmApp.Go To "Home" Page
     CrmApp.Login With Valid Credentials     ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
     Customers.Click Number Button Of Pagination
@@ -79,6 +80,31 @@ Go Through All Customers by using Number Button Pagination
 
 Home page GRIDS Contenst load Properly
     [Documentation]             Testing: Home page GRIDS Contenst load Properly
-    [Tags]                      1001 Smoke Home
+    [Tags]                      1011 Smoke Home
     CrmApp.Verify Home Page GRID Contents Loading
 
+User Login And Navigate To HomePage From HomePage By cliking Logo TextLink
+    [Documentation]             User Login And Navigate To HomePage From HomePage By cliking Logo TextLink
+    [Tags]                      1012 Smoke Home
+    CrmApp.Navigating To HomePage From LoginPage By Clicking Logo TextLink
+
+
+User Login And Navigate To HomePage From CustomerPage By cliking Logo TextLink
+    [Documentation]             User Login And Navigate To HomePage From CustomerPage By cliking Logo TextLink
+    [Tags]                      1013 Smoke Home
+    CrmApp.Go To "Home" Page
+    CrmApp.Navigating To HomePage From All Customers By Clicking Logo TextLink      ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
+
+
+User Login And Navigate To HomePage From CustomerProfile By cliking Logo TextLink
+    [Documentation]             User Login And Navigate To HomePage From CustomerProfile
+    [Tags]                      1014 Smoke Navigation
+    CrmApp.Go To "Home" Page
+    CrmApp.Navigating To HomePage From CustomerPage By Clicking Logo TextLink    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
+
+
+User Login And Navigate To HomePage From AddCustomer Page By cliking Logo TextLink
+    [Documentation]             User Login And Navigate To HomePage From AddCustomer Page
+    [Tags]                      1015 Smoke Navigation
+    CrmApp.Go To "Home" Page
+    CrmApp.Navigating To HomePage From AddCustomer Page By Clicking Logo TextLink    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}

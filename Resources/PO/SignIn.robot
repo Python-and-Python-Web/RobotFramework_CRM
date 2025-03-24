@@ -8,6 +8,8 @@ ${SIGNIN_EMAIL_TEXTBOX} =           id=email-id
 ${SIGNIN_PASSWORD_TEXTBOX} =        id=password
 ${SIGNIN_SUBMIT_BUTTON} =           id=submit-id
 ${SIGNIN_REMEMBER_ME_CHECKBOX} =    id=remember
+${CLICKING_LOGO_TEXT_LINK} =        Customer Service
+
 
 
 *** Keywords ***
@@ -34,6 +36,10 @@ Click "remember" CheckBox
 
 Click "Submit" Button
     click button                ${SIGNIN_SUBMIT_BUTTON}
+
+Clicking Logo TextLink From TopNav
+    click Link                  ${CLICKING_LOGO_TEXT_LINK}
+
 
 
 
