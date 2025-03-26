@@ -6,7 +6,7 @@ Library    SeleniumLibrary
 *** Keywords ***
 Begin Web Test
   #Initialize Selenium
-    Set selenium speed          .25s
+    Set selenium speed          .35s
     Set selenium timeout        10s                             #HomePage load
     open browser                about:blank     ${BROWSER}      #Launhing website in chrome browser
 
@@ -17,3 +17,4 @@ Begin Web Test
 
 End Web Test
     Close all browsers                                           #After all the tests executed, All browsers should close
+

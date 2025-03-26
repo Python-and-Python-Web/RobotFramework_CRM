@@ -1,6 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
-
+Library     Collections
 
 *** Variables ***
 ${SIGNIN_HEADER_LABEL} =            Login
@@ -9,8 +9,6 @@ ${SIGNIN_PASSWORD_TEXTBOX} =        id=password
 ${SIGNIN_SUBMIT_BUTTON} =           id=submit-id
 ${SIGNIN_REMEMBER_ME_CHECKBOX} =    id=remember
 ${CLICKING_LOGO_TEXT_LINK} =        Customer Service
-
-
 
 *** Keywords ***
 Verify Page Loaded
@@ -40,6 +38,7 @@ Click "Submit" Button
 Clicking Logo TextLink From TopNav
     click Link                  ${CLICKING_LOGO_TEXT_LINK}
 
-
-
-
+Verify Email Validation Message
+    [Arguments]    ${ExpectedMessage}
+    ${actual_message}=      execute javascript      return document.getElementById('email-id').validationMessage.trim();
+    Should Be Equal         ${actual_message}       ${ExpectedMessage}

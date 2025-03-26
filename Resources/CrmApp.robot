@@ -7,8 +7,8 @@ Resource    ../Resources/PO/SignIn.robot
 Resource    ../Resources/PO/TopNav.robot
 Resource    ../Resources/PO/CustomerPage.robot
 
-
 *** Variables ***
+
 
 *** Keywords ***
 Go to "Home" Page
@@ -69,7 +69,6 @@ Navigating To HomePage From LoginPage By Clicking Logo TextLink
     SignIn.Clicking Logo TextLink From TopNav
     Home.Verify Page Loaded
 
-
 Navigating To HomePage From All Customers By Clicking Logo TextLink
     [Arguments]    ${Email}     ${Password}
     TopNav.Click "Sign In" Link
@@ -100,3 +99,18 @@ Navigating To HomePage From AddCustomer Page By Clicking Logo TextLink
     AddCustomers.Verify Page Loaded
     AddCustomers.Clicking Logo TextLink From TopNav
     Home.Verify Page Loaded
+
+Go To Login Page
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+
+Enter Invalid Email Format
+    [Arguments]    ${Email}     ${Password}
+    SignIn.Fill "Email" Field          ${Email}
+    SignIn.Fill "Password" Field       ${Password}
+    SignIn.Click "remember" CheckBox
+    SignIn.Click "Submit" Button
+
+Verify Email Validation Message
+    [Arguments]    ${ExpectedMessage}
+    SignIn.Verify Email Validation Message    ${ExpectedMessage}
