@@ -39,4 +39,5 @@ Click Cancel Button
     click link                          ${ADDCUSTOMER_CANCEL_BUTTON}
 
 Clicking Logo TextLink From TopNav
-    click Link          ${CLICKING_LOGO_TEXT_LINK}
+    click Link                          ${CLICKING_LOGO_TEXT_LINK}
+

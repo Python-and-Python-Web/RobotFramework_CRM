@@ -28,7 +28,7 @@ Login With Valid Credentials
     [Arguments]    ${Email}     ${Password}
     TopNav.Click "Sign In" Link
     SignIn.Verify Page Loaded
-    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    SignIn.Login With Valid Credentials                         ${Email}     ${Password}
     Customers.Verify Page Loaded
 
 Add New Customer
@@ -73,7 +73,7 @@ Navigating To HomePage From All Customers By Clicking Logo TextLink
     [Arguments]    ${Email}     ${Password}
     TopNav.Click "Sign In" Link
     SignIn.Verify Page Loaded
-    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    SignIn.Login With Valid Credentials                             ${Email}     ${Password}
     Customers.Verify Page Loaded
     Customers.Clicking Logo TextLink From TopNav
     Home.Verify Page Loaded
@@ -82,7 +82,7 @@ Navigating To HomePage From CustomerPage By Clicking Logo TextLink
     [Arguments]    ${Email}     ${Password}
     TopNav.Click "Sign In" Link
     SignIn.Verify Page Loaded
-    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    SignIn.Login With Valid Credentials                             ${Email}     ${Password}
     Customers.Verify Page Loaded
     Customers.Click Random User Profile View Icon
     CustomerPage.Verify Page Loaded
@@ -93,24 +93,47 @@ Navigating To HomePage From AddCustomer Page By Clicking Logo TextLink
     [Arguments]    ${Email}     ${Password}
     TopNav.Click "Sign In" Link
     SignIn.Verify Page Loaded
-    SignIn.Login With Valid Credentials    ${Email}     ${Password}
+    SignIn.Login With Valid Credentials                             ${Email}     ${Password}
     Customers.Verify Page Loaded
     Customers.Click Add Customer Link
     AddCustomers.Verify Page Loaded
     AddCustomers.Clicking Logo TextLink From TopNav
     Home.Verify Page Loaded
 
-Go To Login Page
-    TopNav.Click "Sign In" Link
-    SignIn.Verify Page Loaded
-
 Enter Invalid Email Format
     [Arguments]    ${Email}     ${Password}
-    SignIn.Fill "Email" Field          ${Email}
-    SignIn.Fill "Password" Field       ${Password}
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Fill "Email" Field                                           ${Email}
+    SignIn.Fill "Password" Field                                        ${Password}
     SignIn.Click "remember" CheckBox
     SignIn.Click "Submit" Button
 
 Verify Email Validation Message
     [Arguments]    ${ExpectedMessage}
-    SignIn.Verify Email Validation Message    ${ExpectedMessage}
+    SignIn.Verify Email Validation Message When Field Is Empty          ${ExpectedMessage}
+
+Enter Empty Password Field
+    [Arguments]    ${Email}
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Fill "Email" Field                                           ${Email}
+    SignIn.Click "remember" CheckBox
+    SignIn.Click "Submit" Button
+
+Verify Password Validation Message
+    [Arguments]    ${ExpectedMessage}
+    SignIn.Verify Password Validation Message When Field Is Empty       ${ExpectedMessage}
+
+Verify Password Validation Message When Field Is Empty
+    [Arguments]    ${ExpectedMessage}
+    SignIn.Verify Password Validation Message When Field Is Empty       ${ExpectedMessage}
+
+Verify Validation Message When Email and Password Fields Are Empty
+    [Arguments]    ${EmailMessage}    ${PasswordMessage}
+    TopNav.Click "Sign In" Link
+    SignIn.Verify Page Loaded
+    SignIn.Click "Submit" Button
+    SignIn.Verify Validation Message When Both Fields Are Empty         ${EmailMessage}    ${PasswordMessage}
+
+

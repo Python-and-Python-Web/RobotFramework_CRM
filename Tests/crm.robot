@@ -10,12 +10,13 @@ Test Teardown       End Web Test
 
 *** Variables ***
 #Defining default browser and credentials value
-${BROWSER} =                   chrome
-${URL} =                       https://automationplayground.com/crm/
-${VALID_LOGIN_EMAIL} =         admin@robotframework.com
-${VALID_LOGIN_PASSWORD} =      _CoffeeCup852!
-${INVALID_EMAIL} =             JamesBond_.com
-${EMAIL_VALIDATION_MESSAGE} =  Please include an '@' in the email address. '${INVALID_EMAIL}' is missing an '@'.
+${BROWSER} =                            chrome
+${URL} =                                https://automationplayground.com/crm/
+${VALID_LOGIN_EMAIL} =                  admin@robotframework.com
+${VALID_LOGIN_PASSWORD} =               _CoffeeCup852!
+${INVALID_EMAIL} =                      JamesBond_.com
+${EMAIL_VALIDATION_MESSAGE} =           Please include an '@' in the email address. '${INVALID_EMAIL}' is missing an '@'.
+${EMPTY_FIELD_VALIDATION_MESSAGE} =     Please fill out this field.
 
 *** Test Cases ***
 #Home page should load
@@ -103,12 +104,26 @@ ${EMAIL_VALIDATION_MESSAGE} =  Please include an '@' in the email address. '${IN
 #     [Tags]                      1015 Smoke Navigation
 #     CrmApp.Go To "Home" Page
 #     CrmApp.Navigating To HomePage From AddCustomer Page By Clicking Logo TextLink    ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
+#
+#Validate Email Format and verify the validation message
+#    [Documentation]             Testing: Validate Email Format and verify the validation message
+#    [Tags]                      1016 Smoke Login
+#    CrmApp.Go To "Home" Page
+#    CrmApp.Enter Invalid Email Format         ${INVALID_EMAIL}    ${VALID_LOGIN_PASSWORD}
+#    CrmApp.Verify Email Validation Message    ${EMAIL_VALIDATION_MESSAGE}
 
-# Validate email format
-Validate Email Format
-    [Documentation]             Testing: Validate email format
-    [Tags]                      1016 Smoke Login
+#Validate Password Field Is Empty and verify the validation message
+#    [Documentation]             Testing: Validate Password Field Is Empty and verify the validation message
+#    [Tags]                      1017 Smoke Login
+#    CrmApp.Go To "Home" Page
+#    CrmApp.Enter Empty Password Field           ${VALID_LOGIN_EMAIL}
+#    CrmApp.Verify Password Validation Message   ${EMPTY_FIELD_VALIDATION_MESSAGE}
+
+Validate Email and Password Fields Are Empty and verify the validation message
+    [Documentation]             Testing: Validate Email and Password Fields Are Empty and verify the validation message
+    [Tags]                      1018 Smoke Login
     CrmApp.Go To "Home" Page
-    CrmApp.Go To Login Page
-    CrmApp.Enter Invalid Email Format         ${INVALID_EMAIL}    ${VALID_LOGIN_PASSWORD}
-    CrmApp.Verify Email Validation Message    ${EMAIL_VALIDATION_MESSAGE}
+    CrmApp.Verify Validation Message When Email and Password Fields Are Empty    ${EMPTY_FIELD_VALIDATION_MESSAGE}    ${EMPTY_FIELD_VALIDATION_MESSAGE}
+
+
+

@@ -12,33 +12,50 @@ ${CLICKING_LOGO_TEXT_LINK} =        Customer Service
 
 *** Keywords ***
 Verify Page Loaded
-    wait until page contains    ${SIGNIN_HEADER_LABEL}
+    wait until page contains            ${SIGNIN_HEADER_LABEL}
 
 Login With Valid Credentials
-    [Arguments]    ${Email}     ${Password}
-    Fill "Email" Field          ${Email}
-    Fill "Password" Field       ${Password}
+    [Arguments]    ${Email}             ${Password}
+    Fill "Email" Field                  ${Email}
+    Fill "Password" Field               ${Password}
     Click "remember" CheckBox   # Ensures checkbox is selected before login
     Click "Submit" Button
 
 Fill "Email" Field
     [Arguments]    ${Email}
-    input text                  ${SIGNIN_EMAIL_TEXTBOX}         ${Email}
+    input text                          ${SIGNIN_EMAIL_TEXTBOX}         ${Email}
 
 Fill "Password" Field
     [Arguments]    ${Password}
-    input text                  ${SIGNIN_PASSWORD_TEXTBOX}     ${Password}
+    input text                          ${SIGNIN_PASSWORD_TEXTBOX}     ${Password}
 
 Click "remember" CheckBox
-    select checkbox             ${SIGNIN_REMEMBER_ME_CHECKBOX}
+    select checkbox                     ${SIGNIN_REMEMBER_ME_CHECKBOX}
 
 Click "Submit" Button
-    click button                ${SIGNIN_SUBMIT_BUTTON}
+    click button                        ${SIGNIN_SUBMIT_BUTTON}
 
 Clicking Logo TextLink From TopNav
-    click Link                  ${CLICKING_LOGO_TEXT_LINK}
+    click Link                          ${CLICKING_LOGO_TEXT_LINK}
 
-Verify Email Validation Message
+Verify Email Validation Message When Field Is Empty
     [Arguments]    ${ExpectedMessage}
-    ${actual_message}=      execute javascript      return document.getElementById('email-id').validationMessage.trim();
-    Should Be Equal         ${actual_message}       ${ExpectedMessage}
+    wait until element is visible       ${SIGNIN_EMAIL_TEXTBOX}
+    ${actual_message}=                  execute javascript      return document.getElementById('email-id').validationMessage.trim();
+    Should Be Equal                     ${actual_message}       ${ExpectedMessage}
+
+Verify Password Validation Message When Field Is Empty
+    [Arguments]    ${ExpectedMessage}
+    wait until element is visible       ${SIGNIN_PASSWORD_TEXTBOX}
+    ${actual_message}=                  execute javascript      return document.getElementById('password').validationMessage.trim();
+    Should Be Equal                     ${actual_message}       ${ExpectedMessage}
+
+Verify Validation Message When Both Fields Are Empty
+    [Arguments]    ${EmailMessage}      ${PasswordMessage}
+    wait until element is visible       ${SIGNIN_EMAIL_TEXTBOX}
+    wait until element is visible       ${SIGNIN_PASSWORD_TEXTBOX}
+    Click Submit Button
+    ${actual_email_message}=            execute javascript      return document.getElementById('email-id').validationMessage.trim();
+    ${actual_password_message}=         execute javascript      return document.getElementById('password').validationMessage.trim();
+    Should Be Equal                     ${actual_email_message}       ${EmailMessage}
+    Should Be Equal                     ${actual_password_message}    ${PasswordMessage}
