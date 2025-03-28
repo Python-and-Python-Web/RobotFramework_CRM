@@ -22,7 +22,6 @@ Should be able to Login with valid credentials
     CrmApp.Go To "Home" Page
     CrmApp.Login With Valid Credentials     ${VALID_LOGIN_EMAIL}    ${VALID_LOGIN_PASSWORD}
 
-
 Should be able to Log Out
     [Documentation]                     Testing: Should be able to log out
     [Tags]                              1004 Smoke Login
@@ -31,12 +30,10 @@ Should be able to Log Out
     CrmApp.Sign Out
 
 
-
 User Navigate To HomePage From LoginPage By cliking Logo TextLink
     [Documentation]                     User Navigate To HomePage From LoginPage By cliking Logo TextLink
     [Tags]                              1012 Smoke Home
     CrmApp.Navigating To HomePage From LoginPage By Clicking Logo TextLink
-
 
 
 Validate Email Format and verify the validation message
@@ -47,14 +44,12 @@ Validate Email Format and verify the validation message
     CrmApp.Verify Email Validation Message    ${EMAIL_VALIDATION_MESSAGE}
 
 
-
 Validate Password Field Is Empty and verify the validation message
     [Documentation]                     Testing: Validate Password Field Is Empty and verify the validation message
     [Tags]                              1017 Smoke Login
     CrmApp.Go To "Home" Page
     CrmApp.Enter Empty Password Field           ${VALID_LOGIN_EMAIL}
     CrmApp.Verify Password Validation Message   ${EMPTY_FIELD_VALIDATION_MESSAGE}
-
 
 
 Validate Email and Password Fields Are Empty and verify the validation message
